@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/config/routes/app_routes.dart';
 import 'package:news_app/config/theme/app.themes.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
 import 'package:news_app/features/daily_news/presentation/pages/home/daily_news.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         title: 'News App',
         theme: theme(),
         debugShowCheckedModeBanner: false,
+        onGenerateRoute: AppRoutes.onGenerateRoutes,
         home: const DailyNews(),
       ),
     );

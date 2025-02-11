@@ -1,4 +1,5 @@
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
+import 'package:floor/floor.dart';
 
 class ArticleResponseModel {
   List<ArticleModel> articles;
@@ -15,6 +16,7 @@ class ArticleResponseModel {
   }
 }
 
+@Entity(tableName: 'article', primaryKeys: ['id'])
 class ArticleModel extends ArticleEntity {
   const ArticleModel({
     int? id,
@@ -37,7 +39,7 @@ class ArticleModel extends ArticleEntity {
         );
 
   factory ArticleModel.fromJson(Map<String, dynamic> articleModelData) {
-    print("Parsing ArticleModel: $articleModelData");
+    // print("Parsing ArticleModel: $articleModelData");
     return ArticleModel(
       author: articleModelData['author'] ?? "",
       title: articleModelData['title'] ?? "",
@@ -47,5 +49,17 @@ class ArticleModel extends ArticleEntity {
       publishedAt: articleModelData['publishedAt'] ?? "",
       content: articleModelData['content'] ?? "",
     );
+  }
+
+  factory ArticleModel.fromEntity(ArticleEntity entity) {
+    return ArticleModel(
+        id: entity.id,
+        author: entity.author,
+        title: entity.title,
+        description: entity.description,
+        url: entity.url,
+        urlToImage: entity.urlToImage,
+        publishedAt: entity.publishedAt,
+        content: entity.content);
   }
 }
